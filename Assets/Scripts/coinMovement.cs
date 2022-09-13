@@ -16,62 +16,62 @@ public class coinMovement : MonoBehaviour
 
     private void Update()
     {
-        if (isDraging)
+        if (coinHandler.gameOver == false && coinHandler.levelEnd == false)
         {
-            if (Input.touches.Length > 0)
+            if (isDraging)
             {
-                swipeDelta = Input.touches[0].position - startTouch;
+                if (Input.touches.Length > 0)
+                {
+                    swipeDelta = Input.touches[0].position - startTouch;
+                }
+                else if (Input.GetMouseButton(0))
+                {
+                    swipeDelta = (Vector2)Input.mousePosition - startTouch;
+                }
             }
-            else if (Input.GetMouseButton(0))
-            {
-                swipeDelta = (Vector2)Input.mousePosition - startTouch;
-            }
-        }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            isDraging = true;
-            startTouch = Input.mousePosition;
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            isDraging = false;
-            Reset();
-        }
-
-        if (Input.touches.Length > 0)
-        {
-            if (Input.touches[0].phase == TouchPhase.Began)
+            if (Input.GetMouseButtonDown(0))
             {
                 isDraging = true;
-                startTouch = Input.touches[0].position;
+                startTouch = Input.mousePosition;
             }
-            else if (Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled)
+            else if (Input.GetMouseButtonUp(0))
             {
                 isDraging = false;
                 Reset();
             }
-        }
 
-        if (swipeDelta.magnitude > 126)
-        {
-            float x = swipeDelta.x;
-
-            if (x < 0)
+            if (Input.touches.Length > 0)
             {
-                xPos = -1;
-                LocalMoveL(xPos);
+                if (Input.touches[0].phase == TouchPhase.Began)
+                {
+                    isDraging = true;
+                    startTouch = Input.touches[0].position;
+                }
+                else if (Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled)
+                {
+                    isDraging = false;
+                    Reset();
+                }
             }
-            else
-            {
-                xPos = 1;
-                LocalMoveR(xPos);
-            }
-        }
-        else { xPos = 0; }
 
-        if (coinHandler.levelEnd == false && coinHandler.gameOver == false)
-        {
+            if (swipeDelta.magnitude > 126)
+            {
+                float x = swipeDelta.x;
+
+                if (x < 0)
+                {
+                    xPos = -1;
+                    LocalMoveL(xPos);
+                }
+                else
+                {
+                    xPos = 1;
+                    LocalMoveR(xPos);
+                }
+            }
+            else { xPos = 0; }
+
             transform.localPosition += new Vector3(0, 0, 1) * speedForward * Time.deltaTime;
         }
     }

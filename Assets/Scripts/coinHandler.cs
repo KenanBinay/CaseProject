@@ -22,15 +22,18 @@ public class coinHandler : MonoBehaviour
         if (other.gameObject.CompareTag("levelEnd"))
         {
             levelEnd = true;
+            Debug.Log("LevelEnd");
         }
         if (other.gameObject.CompareTag("obstacle"))
         {
             gameOver = true;
+            Debug.Log("GameOver");
         }
         if (other.gameObject.CompareTag("coincollect"))
         {
             coinCurrentVal++;
             stackedCoin_Controller.coinCollected = true;
+            Debug.Log("CoinCollected: " + coinCurrentVal);
         }
     }
 
