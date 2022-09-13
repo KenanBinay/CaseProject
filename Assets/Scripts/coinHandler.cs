@@ -30,6 +30,7 @@ public class coinHandler : MonoBehaviour
         if (other.gameObject.CompareTag("coincollect"))
         {
             coinCurrentVal++;
+            stackedCoin_Controller.coinCollected = true;
         }
     }
 
