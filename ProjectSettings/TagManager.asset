@@ -9,6 +9,8 @@ TagManager:
   - coincollect
   - falltrigger
   - obstacle
+  - endEnter
+  - endRamp
   layers:
   - Default
   - TransparentFX

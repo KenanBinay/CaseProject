@@ -112,7 +112,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 120
+  m_Constraints: 122
   m_CollisionDetection: 0
 --- !u!114 &-4422750386381765118
 MonoBehaviour:
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentCoin: {fileID: 0}
   coinStackAnimHandle: {fileID: 7990912631183540105}
-  jumpForce: 13
+  jumpForce: 5
 --- !u!95 &7990912631183540105
 Animator:
   serializedVersion: 3

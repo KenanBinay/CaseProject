@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class coinHandler : MonoBehaviour
 {
-    public static bool levelEnd, gameOver;
-    public static int coinCurrentVal;
+    Rigidbody coinRb;
+    public static bool levelEnd, gameOver, coinsDroped;
+    public static int coinCurrentVal, levelEndCoinVal;
     void Start()
     {
-        coinCurrentVal = 0;
-        levelEnd = gameOver = false;
+        coinRb = GetComponent<Rigidbody>();
+        coinCurrentVal = levelEndCoinVal = 0;
+        levelEnd = gameOver = coinsDroped = false;
     }
 
     void Update()
@@ -19,15 +21,10 @@ public class coinHandler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("levelEnd"))
+        if (other.gameObject.CompareTag("endEnter"))
         {
             levelEnd = true;
             Debug.Log("LevelEnd");
-        }
-        if (other.gameObject.CompareTag("obstacle"))
-        {
-            gameOver = true;
-            Debug.Log("GameOver");
         }
         if (other.gameObject.CompareTag("coincollect"))
         {
@@ -35,10 +32,27 @@ public class coinHandler : MonoBehaviour
             stackedCoin_Controller.coinCollected = true;
             Debug.Log("CoinCollected: " + coinCurrentVal);
         }
+        if (other.gameObject.CompareTag("endRamp"))
+        {
+            if (levelEndCoinVal != coinCurrentVal) { levelEndCoinVal++; coinsDroped = true; }        
+            Debug.Log("levelEnd Coin Drop: " + levelEndCoinVal);
+        }
+        if (other.gameObject.CompareTag("falltrigger"))
+        {
+            gameOver = true;
+            coinRb.constraints = RigidbodyConstraints.None;
+            Debug.Log("GameOver");
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        
+        if (collision.gameObject.CompareTag("obstacle"))
+        {
+            gameOver = true;
+            coinRb.constraints = RigidbodyConstraints.None;
+            coinRb.AddForce(new Vector3(2, 3, 2));
+            Debug.Log("GameOver");
+        }
     }
 }

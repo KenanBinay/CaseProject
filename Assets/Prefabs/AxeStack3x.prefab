@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 405238743850639615}
   - component: {fileID: 405238743850639613}
   - component: {fileID: 405238743850639614}
-  - component: {fileID: 405238743850639612}
+  - component: {fileID: 1208955436424756538}
   m_Layer: 0
   m_Name: Axe (1)
   m_TagString: Untagged
@@ -83,8 +83,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &405238743850639612
-MeshCollider:
+--- !u!65 &1208955436424756538
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -93,10 +93,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8287839383430266118, guid: 9ff998a8a952f12409ea6c71ee8c82a7, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.0005138201, y: 0.00225039, z: 0.0015858838}
+  m_Center: {x: 3.1428562e-18, y: -0.0006406402, z: 0.005572801}
 --- !u!1 &405238744117077802
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,7 +107,7 @@ GameObject:
   - component: {fileID: 405238744117077801}
   - component: {fileID: 405238744117077799}
   - component: {fileID: 405238744117077800}
-  - component: {fileID: 405238744117077798}
+  - component: {fileID: 5273634649383932282}
   m_Layer: 0
   m_Name: Axe (2)
   m_TagString: Untagged
@@ -180,8 +179,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &405238744117077798
-MeshCollider:
+--- !u!65 &5273634649383932282
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -190,10 +189,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8287839383430266118, guid: 9ff998a8a952f12409ea6c71ee8c82a7, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.0005138201, y: 0.00225039, z: 0.0015858838}
+  m_Center: {x: 3.1428562e-18, y: -0.0006406402, z: 0.005572801}
 --- !u!1 &405238745719343008
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,7 +203,7 @@ GameObject:
   - component: {fileID: 405238745719343039}
   m_Layer: 0
   m_Name: AxeStack3x
-  m_TagString: Untagged
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -238,7 +236,7 @@ GameObject:
   - component: {fileID: 3863342546594957409}
   - component: {fileID: 158331901365258180}
   - component: {fileID: 2726495608384647950}
-  - component: {fileID: 4527957380616573658}
+  - component: {fileID: 7624234909494839796}
   m_Layer: 0
   m_Name: Axe
   m_TagString: Untagged
@@ -310,8 +308,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4527957380616573658
-MeshCollider:
+--- !u!65 &7624234909494839796
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -320,7 +318,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8287839383430266118, guid: 9ff998a8a952f12409ea6c71ee8c82a7, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.0005138201, y: 0.00225039, z: 0.0015858838}
+  m_Center: {x: 3.1428562e-18, y: -0.0006406402, z: 0.005572801}

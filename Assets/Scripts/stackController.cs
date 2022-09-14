@@ -8,7 +8,7 @@ public class stackController : MonoBehaviour
     public Transform parentCoin;
     private int coinStacked;
     Vector3 stackingPos;
-    private float distanceZ, gapBetweenCoins;
+    private float gapBetweenCoins;
     void Start()
     {
         coinStacked = 0;
@@ -18,7 +18,7 @@ public class stackController : MonoBehaviour
     {       
         if (coinStacked != coinHandler.coinCurrentVal)
         {
-            if (gapBetweenCoins == 0) { gapBetweenCoins = transform.position.z - 0.3f; }
+            if (gapBetweenCoins == 0) { gapBetweenCoins = transform.localPosition.z - 0.3f; }
             else { gapBetweenCoins -= 0.3f; }
 
             stackingPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gapBetweenCoins);

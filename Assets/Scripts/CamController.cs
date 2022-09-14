@@ -25,6 +25,7 @@ public class CamController : MonoBehaviour
 
             transform.position = SmoothedPosition;
         }    
+
     }
 
     public IEnumerator DelayForLvlEndCam()

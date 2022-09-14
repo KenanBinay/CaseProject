@@ -9,7 +9,7 @@ public class stackedCoin_Controller : MonoBehaviour
     Rigidbody rbStack;
     public static bool coinCollected;
     public float jumpForce;
-    float distanceToParent;
+    float distanceToParent,lostCoinPosZ;
 
     void Start()
     {
@@ -20,11 +20,28 @@ public class stackedCoin_Controller : MonoBehaviour
     void Update()
     {
         distanceToParent = parentCoin.transform.position.z - transform.position.z;
+        var parentDirectionX = new Vector3(parentCoin.transform.position.x, transform.position.y, transform.position.z);
+
+        if (coinHandler.gameOver) { rbStack.constraints = RigidbodyConstraints.None; }
+        if (transform.position.x != parentCoin.transform.position.x) { transform.Translate(parentDirectionX * 5 * Time.deltaTime); }
 
         if (coinCollected)
         {          
             StartCoroutine(waitDelay());
         }
+
+  //      if (transform.position.z < lostCoinPosZ) { transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 0.3f); }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "obstacle")
+        {
+            coinHandler.coinCurrentVal--;
+            lostCoinPosZ = transform.position.z;
+            Debug.Log("lost coin pos: " + lostCoinPosZ);
+            Destroy(gameObject);
+        }    
     }
 
     private IEnumerator waitDelay()

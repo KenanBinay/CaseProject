@@ -6,7 +6,7 @@ public class collectableCoin_Controller : MonoBehaviour
 {
     void Start()
     {
-        gameObject.tag = "coincollect";
+
     }
 
 

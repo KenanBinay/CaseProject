@@ -5,9 +5,9 @@ using UnityEngine;
 public class coinMovement : MonoBehaviour
 {
     private Vector2 startTouch, swipeDelta;
-    private bool isDraging;
+    private bool isDraging, coinReturning;
     private float xPos;
-    public float turnSpeed, speedForward;
+    public float turnSpeed, speedForward, coinRotateAngle;
     public GameObject coinStack;
     void Start()
     {
@@ -37,7 +37,7 @@ public class coinMovement : MonoBehaviour
             }
             else if (Input.GetMouseButtonUp(0))
             {
-                isDraging = false;
+                isDraging = false;              
                 Reset();
             }
 
@@ -72,17 +72,39 @@ public class coinMovement : MonoBehaviour
             }
             else { xPos = 0; }
 
+            if (coinReturning)
+            {
+                if (transform.localRotation.x != 0) { transform.rotation = Quaternion.Euler(0, -90, 0); }
+            }
+
             transform.localPosition += new Vector3(0, 0, 1) * speedForward * Time.deltaTime;
+        }
+
+        if (coinHandler.levelEnd && coinHandler.coinsDroped == false)
+        {
+            Vector3 desiredPosition = new Vector3(0, transform.position.y, transform.position.z);
+            Vector3 SmoothedPosition = Vector3.Lerp(transform.position, desiredPosition, 0.1f);
+            if (transform.position != SmoothedPosition) { transform.position = SmoothedPosition; }
+
+            transform.localPosition += new Vector3(0, 0, 1) * speedForward * Time.deltaTime;         
+        }
+        if (coinHandler.coinsDroped)
+        {
+
         }
     }
 
     void LocalMoveL(float x)
     {
+        coinReturning = false;
+        if (transform.localRotation.x < 30) { transform.Rotate(new Vector3(1, 0, 0) * coinRotateAngle); }   
         transform.localPosition += new Vector3(x, 0, 0) * turnSpeed * Time.deltaTime;
     }
 
     void LocalMoveR(float x)
     {
+        coinReturning = false;
+        if (transform.localRotation.x > -30f) { transform.Rotate(new Vector3(-1, 0, 0) * coinRotateAngle); }      
         transform.localPosition += new Vector3(x, 0, 0) * turnSpeed * Time.deltaTime;
     }
 
@@ -90,5 +112,6 @@ public class coinMovement : MonoBehaviour
     {
         startTouch = swipeDelta = Vector2.zero;
         isDraging = false;
+        if (transform.eulerAngles.y != 90) { coinReturning = true; }
     }
 }
