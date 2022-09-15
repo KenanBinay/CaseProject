@@ -6,23 +6,23 @@ public class stackController : MonoBehaviour
 {
     public GameObject coinStack;
     public Transform parentCoin;
-    private int coinStacked;
+    public static bool coinCollected_Stack;
     Vector3 stackingPos;
     private float gapBetweenCoins;
     void Start()
     {
-        coinStacked = 0;
+        coinCollected_Stack = false;
     }
 
     void Update()
     {       
-        if (coinStacked != coinHandler.coinCurrentVal)
+        if (coinCollected_Stack)
         {
             if (gapBetweenCoins == 0) { gapBetweenCoins = transform.localPosition.z - 0.3f; }
             else { gapBetweenCoins -= 0.3f; }
 
             stackingPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gapBetweenCoins);
-            
+        
             stackNewCoin(coinStack);
         }
         
@@ -30,9 +30,8 @@ public class stackController : MonoBehaviour
 
     void stackNewCoin(GameObject _stackingItem)
     {
-        coinStacked++;
         GameObject childCoin = Instantiate(_stackingItem, stackingPos, transform.rotation, parentCoin);
         childCoin.name = "childCoinStack";
-
+        coinCollected_Stack = false;
     }
 }

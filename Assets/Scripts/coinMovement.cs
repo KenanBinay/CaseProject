@@ -80,16 +80,17 @@ public class coinMovement : MonoBehaviour
             transform.localPosition += new Vector3(0, 0, 1) * speedForward * Time.deltaTime;
         }
 
-        if (coinHandler.levelEnd && coinHandler.coinsDroped == false)
+        if (coinHandler.levelEnd && levelEnd_Controller.coinsDroped == false)
         {
             Vector3 desiredPosition = new Vector3(0, transform.position.y, transform.position.z);
             Vector3 SmoothedPosition = Vector3.Lerp(transform.position, desiredPosition, 0.1f);
             if (transform.position != SmoothedPosition) { transform.position = SmoothedPosition; }
+            transform.localPosition += new Vector3(0, 0, 1) * speedForward * Time.deltaTime;
 
-            transform.localPosition += new Vector3(0, 0, 1) * speedForward * Time.deltaTime;         
         }
-        if (coinHandler.coinsDroped)
+        if (levelEnd_Controller.coinsDroped)
         {
+          //  coinHandler.levelEnd = false;
 
         }
     }
@@ -97,14 +98,16 @@ public class coinMovement : MonoBehaviour
     void LocalMoveL(float x)
     {
         coinReturning = false;
-        if (transform.localRotation.x < 30) { transform.Rotate(new Vector3(1, 0, 0) * coinRotateAngle); }   
+
+        transform.Rotate(new Vector3(0.5f, 0, 0));
         transform.localPosition += new Vector3(x, 0, 0) * turnSpeed * Time.deltaTime;
     }
 
     void LocalMoveR(float x)
     {
         coinReturning = false;
-        if (transform.localRotation.x > -30f) { transform.Rotate(new Vector3(-1, 0, 0) * coinRotateAngle); }      
+
+        transform.Rotate(new Vector3(-0.5f, 0, 0));
         transform.localPosition += new Vector3(x, 0, 0) * turnSpeed * Time.deltaTime;
     }
 

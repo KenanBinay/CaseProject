@@ -7,7 +7,7 @@ public class stackedCoin_Controller : MonoBehaviour
     public GameObject parentCoin;
     public Animator coinStackAnimHandle;
     Rigidbody rbStack;
-    public static bool coinCollected;
+    public static bool coinCollected, gameOverStacked;
     public float jumpForce;
     float distanceToParent,lostCoinPosZ;
 
@@ -20,13 +20,13 @@ public class stackedCoin_Controller : MonoBehaviour
     void Update()
     {
         distanceToParent = parentCoin.transform.position.z - transform.position.z;
-        var parentDirectionX = new Vector3(parentCoin.transform.position.x, transform.position.y, transform.position.z);
+        var parentDirectionX = new Vector3(0, transform.position.y, transform.position.z);
 
         if (coinHandler.gameOver) { rbStack.constraints = RigidbodyConstraints.None; }
-        if (transform.position.x != parentCoin.transform.position.x) { transform.Translate(parentDirectionX * 5 * Time.deltaTime); }
+        //  if (transform.position.x != parentCoin.transform.position.x) { transform.Translate(parentDirectionX); Debug.Log("stackedCoin repositioning"); }
 
         if (coinCollected)
-        {          
+        {            
             StartCoroutine(waitDelay());
         }
 
@@ -39,15 +39,15 @@ public class stackedCoin_Controller : MonoBehaviour
         {
             coinHandler.coinCurrentVal--;
             lostCoinPosZ = transform.position.z;
+            
             Debug.Log("lost coin pos: " + lostCoinPosZ);
             Destroy(gameObject);
-        }    
+        }
     }
 
     private IEnumerator waitDelay()
     {
         yield return new WaitForSeconds(distanceToParent);
-        //   coinStackAnimHandle.SetTrigger("coinCollected");
         rbStack.AddForce(new Vector3(0, 3, 0) * jumpForce);
         coinCollected = false;
     }

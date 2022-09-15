@@ -5,13 +5,13 @@ using UnityEngine;
 public class coinHandler : MonoBehaviour
 {
     Rigidbody coinRb;
-    public static bool levelEnd, gameOver, coinsDroped;
+    public static bool levelEnd, gameOver;
     public static int coinCurrentVal, levelEndCoinVal;
     void Start()
     {
         coinRb = GetComponent<Rigidbody>();
         coinCurrentVal = levelEndCoinVal = 0;
-        levelEnd = gameOver = coinsDroped = false;
+        levelEnd = gameOver = false;
     }
 
     void Update()
@@ -29,14 +29,9 @@ public class coinHandler : MonoBehaviour
         if (other.gameObject.CompareTag("coincollect"))
         {
             coinCurrentVal++;
-            stackedCoin_Controller.coinCollected = true;
+            stackedCoin_Controller.coinCollected = stackController.coinCollected_Stack = true;
             Debug.Log("CoinCollected: " + coinCurrentVal);
-        }
-        if (other.gameObject.CompareTag("endRamp"))
-        {
-            if (levelEndCoinVal != coinCurrentVal) { levelEndCoinVal++; coinsDroped = true; }        
-            Debug.Log("levelEnd Coin Drop: " + levelEndCoinVal);
-        }
+        }      
         if (other.gameObject.CompareTag("falltrigger"))
         {
             gameOver = true;
@@ -51,8 +46,13 @@ public class coinHandler : MonoBehaviour
         {
             gameOver = true;
             coinRb.constraints = RigidbodyConstraints.None;
-            coinRb.AddForce(new Vector3(2, 3, 2));
+            coinRb.AddForce(new Vector3(2, 4, 2));
             Debug.Log("GameOver");
+        }
+        if (collision.gameObject.CompareTag("endRamp"))
+        {
+            if (levelEndCoinVal != coinCurrentVal) { levelEndCoinVal++;}
+            Debug.Log("levelEnd Coin Drop: " + levelEndCoinVal);
         }
     }
 }

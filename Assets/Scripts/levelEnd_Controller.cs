@@ -9,17 +9,19 @@ public class levelEnd_Controller : MonoBehaviour
     private Vector3 rampSpawnPos;
 
     private float gapBetweenRamps, heightBetwenRamps;
+    public static bool coinsDroped;
     int coinCount;
     void Start()
     {
         gapBetweenRamps = heightBetwenRamps = coinCount = 0;
+        coinsDroped = false;
     }
 
     void Update()
     {
         if (coinHandler.levelEnd)
         {
-            if (gapBetweenRamps == 0 && heightBetwenRamps == 0) { gapBetweenRamps = rampEnd.transform.position.z + 1.67f; heightBetwenRamps = rampEnd.transform.position.y + 0.1f; }
+            if (gapBetweenRamps == 0 && heightBetwenRamps == 0) { gapBetweenRamps = rampEnd.transform.position.z + 1.67f; heightBetwenRamps = rampEnd.transform.position.y + 0.05f; }
             else { gapBetweenRamps += 1.67f; heightBetwenRamps += 0.05f; }
 
             if (coinCount != coinHandler.coinCurrentVal)
@@ -30,6 +32,9 @@ public class levelEnd_Controller : MonoBehaviour
                 addRamp();
             }
         }
+
+        if (coinHandler.levelEndCoinVal == coinHandler.coinCurrentVal) { coinsDroped = true; }
+        else { coinsDroped = false; }
     }
 
     void addRamp()

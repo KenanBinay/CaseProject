@@ -14,7 +14,9 @@ public class collectableCoin_Controller : MonoBehaviour
     {
         if (collision.gameObject.tag == "coinmain")
         {
-            Destroy(gameObject);
+            
         }
+
+        Destroy(gameObject);
     }
 }
