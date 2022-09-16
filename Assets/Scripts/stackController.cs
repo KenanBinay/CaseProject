@@ -30,7 +30,7 @@ public class stackController : MonoBehaviour
 
     void stackNewCoin(GameObject _stackingItem)
     {
-        GameObject childCoin = Instantiate(_stackingItem, stackingPos, transform.rotation, parentCoin);
+        GameObject childCoin = Instantiate(_stackingItem, stackingPos, transform.rotation);
         childCoin.name = "childCoinStack";
         coinCollected_Stack = false;
     }

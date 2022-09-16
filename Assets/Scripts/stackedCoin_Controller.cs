@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class stackedCoin_Controller : MonoBehaviour
 {
@@ -18,19 +19,21 @@ public class stackedCoin_Controller : MonoBehaviour
     }
 
     void Update()
-    {
-        distanceToParent = parentCoin.transform.position.z - transform.position.z;
-        var parentDirectionX = new Vector3(0, transform.position.y, transform.position.z);
-
+    {       
         if (coinHandler.gameOver) { rbStack.constraints = RigidbodyConstraints.None; }
-        //  if (transform.position.x != parentCoin.transform.position.x) { transform.Translate(parentDirectionX); Debug.Log("stackedCoin repositioning"); }
+        else
+        {
+            distanceToParent = parentCoin.transform.position.z - transform.position.z;
+            Vector3 Direction = new Vector3(parentCoin.transform.position.x, transform.position.y, transform.position.z);
+            transform.localPosition += new Vector3(0, 0, 1) * 1.7f * Time.deltaTime;
+            transform.DOLocalMoveX(parentCoin.transform.position.x, distanceToParent);
+            transform.DOLocalRotate(new Vector3(0, 90, 0), 1);
+        }
 
         if (coinCollected)
         {            
             StartCoroutine(waitDelay());
         }
-
-  //      if (transform.position.z < lostCoinPosZ) { transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 0.3f); }
     }
 
     private void OnCollisionEnter(Collision collision)

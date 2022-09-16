@@ -9,11 +9,8 @@ public class levelGround_Controller : MonoBehaviour
     void Start()
     {
         axe.SetActive(false);
-        axe2.SetActive(false);
         wipeOutGround.SetActive(false);
-        wipeOutGround2.SetActive(false);
         wipeOutAir.SetActive(false);
-        wipeOutAir2.SetActive(false);
 
         int[] obstacleNumbs = { 1, 2, 3 };
         randObstacleSelect = obstacleNumbs[Random.Range(0, obstacleNumbs.Length)];

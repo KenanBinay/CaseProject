@@ -1,17 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class coinMovement : MonoBehaviour
 {
     private Vector2 startTouch, swipeDelta;
-    private bool isDraging, coinReturning;
+    private static bool isDraging, startClick;
     private float xPos;
     public float turnSpeed, speedForward, coinRotateAngle;
-    public GameObject coinStack;
+    public GameObject coinStack, startFinger;
     void Start()
     {
-        isDraging = false;
+        startFinger.SetActive(true);
+        isDraging = startClick = false;
     }
 
     private void Update()
@@ -34,6 +36,7 @@ public class coinMovement : MonoBehaviour
             {
                 isDraging = true;
                 startTouch = Input.mousePosition;
+                if (startClick == false) { startingGame(); }   
             }
             else if (Input.GetMouseButtonUp(0))
             {
@@ -72,9 +75,9 @@ public class coinMovement : MonoBehaviour
             }
             else { xPos = 0; }
 
-            if (coinReturning)
+            if (isDraging == false)
             {
-                if (transform.localRotation.x != 0) { transform.rotation = Quaternion.Euler(0, -90, 0); }
+                transform.DOLocalRotate(new Vector3(0, -90, 0), 0.5f);
             }
 
             transform.localPosition += new Vector3(0, 0, 1) * speedForward * Time.deltaTime;
@@ -97,24 +100,26 @@ public class coinMovement : MonoBehaviour
 
     void LocalMoveL(float x)
     {
-        coinReturning = false;
-
-        transform.Rotate(new Vector3(0.5f, 0, 0));
+        transform.DOLocalRotate(new Vector3(0, -130, 0), 0.2f);
         transform.localPosition += new Vector3(x, 0, 0) * turnSpeed * Time.deltaTime;
     }
 
     void LocalMoveR(float x)
     {
-        coinReturning = false;
-
-        transform.Rotate(new Vector3(-0.5f, 0, 0));
+        transform.DOLocalRotate(new Vector3(0, -50, 0), 0.2f);
         transform.localPosition += new Vector3(x, 0, 0) * turnSpeed * Time.deltaTime;
+    }
+
+    void startingGame()
+    {
+        startFinger.SetActive(false);
+        speedForward = 1.7f;
+        startClick = true;
     }
 
     private void Reset()
     {
         startTouch = swipeDelta = Vector2.zero;
         isDraging = false;
-        if (transform.eulerAngles.y != 90) { coinReturning = true; }
     }
 }
