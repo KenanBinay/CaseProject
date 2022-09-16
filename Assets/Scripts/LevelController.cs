@@ -9,13 +9,13 @@ public class LevelController : MonoBehaviour
 
     private Vector3 spawnpoint;
     public float posZ_1, posZ_2, posZ_3;
-    float randomPosZ, usedPosZ1, usedPosZ2, usedPosZ3;
+    float randomPosZ, usedPosZ1, usedPosZ2, usedPosZ3, usedPosZ;
     float[] posNumbZ = { 6.5f, 17.44f, 28.5f };
     private int levelCurrent, randType, levelMapControl, baseAdded, baseNumb;
     int j;
     void Start()
     {
-        randomPosZ = usedPosZ1 = usedPosZ2 = usedPosZ3 = 0;
+        randomPosZ = usedPosZ1 = usedPosZ2 = usedPosZ3 = usedPosZ = 0;
         j = 3;
         int[] levelType = { 1, 2, 3, 4 };
         levelCurrent = levelType[Random.Range(0, levelType.Length)];
@@ -28,13 +28,15 @@ public class LevelController : MonoBehaviour
         for (int i = 0; i < j; i += 1)
         {
             randomPosZ = posNumbZ[Random.Range(0, posNumbZ.Length)];
+            if (randomPosZ == 6.5f) { usedPosZ1 = 6.5f; }
+            if (randomPosZ == 17.44f) { usedPosZ2 = 17.44f; }
+            if (randomPosZ == 28.5f) { usedPosZ3 = 28.5f; }
 
-            if (randomPosZ == 28.5f) { usedPosZ3 = randomPosZ; }
-            if (randomPosZ == 17.44f) { usedPosZ2 = randomPosZ; }
-            if (randomPosZ == 6.5f) { usedPosZ1 = randomPosZ; }
-            if (usedPosZ1 != randomPosZ)
+            if (usedPosZ == randomPosZ) { j++; }
+            else
             {
-                spawnpoint = new Vector3(-0.06f, 1.58f, usedPosZ1);
+                spawnpoint = new Vector3(-0.06f, 1.58f, randomPosZ);
+                usedPosZ = randomPosZ;
 
                 int[] baseNumbs = { 0, 1, 2, 3, 4, 5 };
                 baseNumb = baseNumbs[Random.Range(0, baseNumbs.Length)];
@@ -42,34 +44,41 @@ public class LevelController : MonoBehaviour
 
                 GameObject baseObject = levelPrefabs[baseNumb];
                 Instantiate(baseObject, spawnpoint, baseObject.transform.rotation);
-
-                j++;
             }
-            if (usedPosZ2 != randomPosZ)
-            {
-                spawnpoint = new Vector3(-0.06f, 1.58f, usedPosZ2);
+        }
 
-                int[] baseNumbs = { 0, 1, 2, 3, 4, 5 };
-                baseNumb = baseNumbs[Random.Range(0, baseNumbs.Length)];
-                Debug.Log("SelectedLevelBases: " + baseNumb);
+        if (usedPosZ1 == 0)
+        {
+            spawnpoint = new Vector3(-0.06f, 1.58f, 6.5f);
 
-                GameObject baseObject = levelPrefabs[baseNumb];
-                Instantiate(baseObject, spawnpoint, baseObject.transform.rotation);
-                j++;
-            }
-            if (usedPosZ3 != randomPosZ)
-            {
-                spawnpoint = new Vector3(-0.06f, 1.58f, usedPosZ3);
+            int[] baseNumbs = { 0, 1, 2, 3, 4, 5 };
+            baseNumb = baseNumbs[Random.Range(0, baseNumbs.Length)];
+            Debug.Log("SelectedLevelBases: " + baseNumb);
 
-                int[] baseNumbs = { 0, 1, 2, 3, 4, 5 };
-                baseNumb = baseNumbs[Random.Range(0, baseNumbs.Length)];
-                Debug.Log("SelectedLevelBases: " + baseNumb);
+            GameObject baseObject = levelPrefabs[baseNumb];
+            Instantiate(baseObject, spawnpoint, baseObject.transform.rotation);
+        }
+        if (usedPosZ2 == 0)
+        {
+            spawnpoint = new Vector3(-0.06f, 1.58f, 17.44f);
 
-                GameObject baseObject = levelPrefabs[baseNumb];
-                Instantiate(baseObject, spawnpoint, baseObject.transform.rotation);
-                j++;
-            }
+            int[] baseNumbs = { 0, 1, 2, 3, 4, 5 };
+            baseNumb = baseNumbs[Random.Range(0, baseNumbs.Length)];
+            Debug.Log("SelectedLevelBases: " + baseNumb);
 
+            GameObject baseObject = levelPrefabs[baseNumb];
+            Instantiate(baseObject, spawnpoint, baseObject.transform.rotation);
+        }
+        if (usedPosZ3 == 0)
+        {
+            spawnpoint = new Vector3(-0.06f, 1.58f, 28.5f);
+
+            int[] baseNumbs = { 0, 1, 2, 3, 4, 5 };
+            baseNumb = baseNumbs[Random.Range(0, baseNumbs.Length)];
+            Debug.Log("SelectedLevelBases: " + baseNumb);
+
+            GameObject baseObject = levelPrefabs[baseNumb];
+            Instantiate(baseObject, spawnpoint, baseObject.transform.rotation);
         }
     }
 }
