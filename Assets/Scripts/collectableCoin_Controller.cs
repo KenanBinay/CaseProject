@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class collectableCoin_Controller : MonoBehaviour
 {
+    GameObject collectable;
     void Start()
     {
-
+        collectable.GetComponent<GameObject>();
     }
 
 
@@ -14,9 +15,7 @@ public class collectableCoin_Controller : MonoBehaviour
     {
         if (collision.gameObject.tag == "coinmain")
         {
-            
-        }
-
-        Destroy(gameObject);
+            Destroy(collectable);
+        }    
     }
 }

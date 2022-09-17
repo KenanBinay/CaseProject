@@ -5,6 +5,7 @@ using UnityEngine;
 public class coinHandler : MonoBehaviour
 {
     Rigidbody coinRb;
+    GameObject coinCollectedObject;
     public static bool levelEnd, gameOver;
     public static int coinCurrentVal, levelEndCoinVal;
     void Start()
@@ -44,14 +45,14 @@ public class coinHandler : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("obstacle"))
         {
-            gameOver = true;
+            gameOver = stackedCoin_Controller.forceControl = true;
             coinRb.constraints = RigidbodyConstraints.None;
-            coinRb.AddForce(new Vector3(2, 4, 2));
+            coinRb.AddForce(new Vector3(2, 10, 2));
             Debug.Log("GameOver");
         }
         if (collision.gameObject.CompareTag("endRamp"))
         {
-            if (levelEndCoinVal != coinCurrentVal) { levelEndCoinVal++;}
+            if (levelEndCoinVal != coinCurrentVal) { levelEndCoinVal++;}           
             Debug.Log("levelEnd Coin Drop: " + levelEndCoinVal);
         }
     }

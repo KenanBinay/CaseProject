@@ -6,12 +6,14 @@ using DG.Tweening;
 public class coinMovement : MonoBehaviour
 {
     private Vector2 startTouch, swipeDelta;
-    private static bool isDraging, startClick;
+    public static bool isDraging, startClick, rightTurn, leftTurn;
     private float xPos;
     public float turnSpeed, speedForward, coinRotateAngle;
     public GameObject coinStack, startFinger;
+    Rigidbody coinRb;
     void Start()
     {
+        coinRb = GetComponent<Rigidbody>();
         startFinger.SetActive(true);
         isDraging = startClick = false;
     }
@@ -40,7 +42,7 @@ public class coinMovement : MonoBehaviour
             }
             else if (Input.GetMouseButtonUp(0))
             {
-                isDraging = false;              
+                isDraging = rightTurn = leftTurn = false;            
                 Reset();
             }
 
@@ -83,29 +85,31 @@ public class coinMovement : MonoBehaviour
             transform.localPosition += new Vector3(0, 0, 1) * speedForward * Time.deltaTime;
         }
 
-        if (coinHandler.levelEnd && levelEnd_Controller.coinsDroped == false)
+        if (coinHandler.levelEnd && coinHandler.levelEndCoinVal != coinHandler.coinCurrentVal)
         {
             Vector3 desiredPosition = new Vector3(0, transform.position.y, transform.position.z);
             Vector3 SmoothedPosition = Vector3.Lerp(transform.position, desiredPosition, 0.1f);
             if (transform.position != SmoothedPosition) { transform.position = SmoothedPosition; }
-            transform.localPosition += new Vector3(0, 0, 1) * speedForward * Time.deltaTime;
-
+            if (gameObject.transform.position.z != levelEnd_Controller.distanceRamps_Z - 16f) { transform.localPosition += new Vector3(0, 0, 1) * speedForward * Time.deltaTime; }
         }
-        if (levelEnd_Controller.coinsDroped)
+        if (coinHandler.levelEndCoinVal == coinHandler.coinCurrentVal)
         {
-          //  coinHandler.levelEnd = false;
-
+           
         }
     }
 
     void LocalMoveL(float x)
     {
+        rightTurn = false;
+        leftTurn = true;
         transform.DOLocalRotate(new Vector3(0, -130, 0), 0.2f);
         transform.localPosition += new Vector3(x, 0, 0) * turnSpeed * Time.deltaTime;
     }
 
     void LocalMoveR(float x)
     {
+        leftTurn = false;
+        rightTurn = true;
         transform.DOLocalRotate(new Vector3(0, -50, 0), 0.2f);
         transform.localPosition += new Vector3(x, 0, 0) * turnSpeed * Time.deltaTime;
     }

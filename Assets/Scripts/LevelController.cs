@@ -16,7 +16,7 @@ public class LevelController : MonoBehaviour
     void Start()
     {
         randomPosZ = usedPosZ1 = usedPosZ2 = usedPosZ3 = usedPosZ = 0;
-        j = 3;
+        j = 2;
         int[] levelType = { 1, 2, 3, 4 };
         levelCurrent = levelType[Random.Range(0, levelType.Length)];
 
