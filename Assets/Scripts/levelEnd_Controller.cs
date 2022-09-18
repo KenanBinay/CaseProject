@@ -18,7 +18,7 @@ public class levelEnd_Controller : MonoBehaviour
 
     void Update()
     {
-        if (coinHandler.levelEnd)
+        if (coinHandler.levelEnd && coinMovement.flip == false)
         {
             if (coinHandler.coinCurrentVal <= 0) { distanceRamps_Z = rampEnd.transform.position.z; ; }
             if (gapBetweenRamps == 0 && heightBetwenRamps == 0) { gapBetweenRamps = rampEnd.transform.position.z; heightBetwenRamps = rampEnd.transform.position.y; distanceRamps_Z = gapBetweenRamps; }

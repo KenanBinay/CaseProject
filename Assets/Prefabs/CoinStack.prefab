@@ -126,4 +126,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinEnd: {fileID: 3709487080370370759, guid: e6376d6cee0d3294aa90de9632c0b309, type: 3}
-  jumpForce: 0.37
+  jumpForce: 0.2

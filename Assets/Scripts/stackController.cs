@@ -16,7 +16,8 @@ public class stackController : MonoBehaviour
     }
 
     void Update()
-    {       
+    {
+        if (coinHandler.coinCurrentVal <= 0) { countLine = 0; }
         if (coinCollected_Stack)
         {
             countLine++;

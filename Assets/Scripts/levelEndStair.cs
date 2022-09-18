@@ -6,11 +6,11 @@ public class levelEndStair : MonoBehaviour
 {
     public GameObject coinM, coinEnd;
     int myLine;
-    bool destroyed;
+
     void Start()
     {
         myLine = levelEnd_Controller.stairLine;
-        destroyed = false;
+
     }
 
    

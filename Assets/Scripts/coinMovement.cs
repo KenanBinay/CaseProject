@@ -6,12 +6,11 @@ using DG.Tweening;
 public class coinMovement : MonoBehaviour
 {
     private Vector2 startTouch, swipeDelta;
-    public static bool isDraging, startClick, rightTurn, leftTurn;
+    public static bool isDraging, startClick, rightTurn, leftTurn, flip;
     private float xPos;
     public float turnSpeed, speedForward, coinRotateAngle;
     public GameObject coinStack, startFinger;
     Rigidbody coinRb;
-    bool flip;
     void Start()
     {
         coinRb = GetComponent<Rigidbody>();
@@ -86,13 +85,13 @@ public class coinMovement : MonoBehaviour
             transform.localPosition += new Vector3(0, 0, 1) * speedForward * Time.deltaTime;
         }
 
-        if (coinHandler.levelEnd && coinHandler.levelEndCoinVal != coinHandler.coinCurrentVal)
+        if (coinHandler.levelEnd && coinHandler.levelEndCoinVal != coinHandler.coinCurrentVal && flip == false)
         {
             Vector3 desiredPosition = new Vector3(0, transform.position.y, transform.position.z);
             Vector3 SmoothedPosition = Vector3.Lerp(transform.position, desiredPosition, 2f);
             transform.DOLocalRotate(new Vector3(0, -90, 0), 0.5f);
             if (transform.position != SmoothedPosition) { transform.position = SmoothedPosition; }
-            transform.localPosition += new Vector3(0, 0, 1) * speedForward * Time.deltaTime; 
+            transform.localPosition += new Vector3(0, 0, 1) * speedForward * Time.deltaTime;
         }
         if (coinHandler.levelEnd && coinHandler.levelEndCoinVal == coinHandler.coinCurrentVal)
         {

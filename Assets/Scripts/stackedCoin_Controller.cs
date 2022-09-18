@@ -5,7 +5,6 @@ using DG.Tweening;
 
 public class stackedCoin_Controller : MonoBehaviour
 {
-    public GameObject coinEnd;
     GameObject parentCoin;
     Rigidbody rbStack;
     public static bool coinCollected, gameOverStacked, forceControl;
@@ -34,13 +33,12 @@ public class stackedCoin_Controller : MonoBehaviour
         else
         {
             distanceBetween = parentCoin.transform.position.z - transform.position.z;
-
+            float x = endDistanceCut + distanceCut;
             if (EndCoinDrop == false)
             {
-                transform.DOLocalMoveZ(parentCoin.transform.position.z - distanceCut + endDistanceCut, myline);
+                transform.DOLocalMoveZ(parentCoin.transform.position.z - x, myline);
                 transform.DOLocalMoveX(parentCoin.transform.position.x, distanceBetween);
-
-                transform.DOLocalRotate(new Vector3(0, -90, 0), 1);
+                transform.DOLocalRotate(new Vector3(0, -90, 0), 0.5f);
             }
 
             if (coinMovement.leftTurn) { transform.DOLocalRotate(new Vector3(0, -130, 0), distanceBetween); }
@@ -78,7 +76,7 @@ public class stackedCoin_Controller : MonoBehaviour
                 EndCoinDrop = true;
                 Destroy(other.gameObject);
                 rbStack.constraints = RigidbodyConstraints.None;
-                rbStack.AddForce(new Vector3(-2f, 1.2f, 0));
+                rbStack.AddForce(new Vector3(-2.5f, 1.5f, -3f));
             }
 
      //       Destroy(gameObject); 
@@ -95,7 +93,8 @@ public class stackedCoin_Controller : MonoBehaviour
     private IEnumerator waitDelay()
     {
         yield return new WaitForSeconds(distanceBetween);
-        rbStack.AddForce(new Vector3(0, 1f, 0) * jumpForce);
+        rbStack.AddForce(new Vector3(0, 1, 0) * jumpForce);
+        if (rbStack.transform.position.y <= 1) { rbStack.AddForce(new Vector3(0, 1, 0) * jumpForce); }
         coinCollected = false;
     }
 }

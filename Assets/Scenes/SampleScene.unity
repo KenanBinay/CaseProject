@@ -872,14 +872,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 4753803262413323149}
   smoothSpeed: 0.04
-  followSpeed: 1
-  lvlEndSmoothSpeed: 0
-  CamZoomSmooth: 0
-  boosts_smoothSpeed: 0
+  endSmootSpeed: 0.005
   offset: {x: 0, y: 0.6, z: -2}
-  lvlEndOffset: {x: 0, y: 0, z: 0}
-  lookLvlEnd: {x: 0, y: 0, z: 0}
-  offset_speedUp: {x: 0, y: 0, z: 0}
+  offsetEnd: {x: 0, y: 5.6, z: -16}
 --- !u!1 &990772682
 GameObject:
   m_ObjectHideFlags: 0
