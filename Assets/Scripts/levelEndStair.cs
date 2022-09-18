@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class levelEndStair : MonoBehaviour
 {
-    public GameObject coinM, coinEnd;
     int myLine;
 
     void Start()
     {
         myLine = levelEnd_Controller.stairLine;
-
     }
 
    
