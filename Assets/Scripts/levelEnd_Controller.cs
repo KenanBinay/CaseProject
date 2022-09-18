@@ -10,19 +10,18 @@ public class levelEnd_Controller : MonoBehaviour
 
     public static int stairLine;
     public static float gapBetweenRamps, heightBetwenRamps, distanceRamps_Z;
-    public static bool coinsDroped;
     int coinCount;
     void Start()
     {
         gapBetweenRamps = heightBetwenRamps = stairLine = coinCount = 0;
-        coinsDroped = false;
     }
 
     void Update()
     {
         if (coinHandler.levelEnd)
         {
-            if (gapBetweenRamps == 0 && heightBetwenRamps == 0) { gapBetweenRamps = rampEnd.transform.position.z; heightBetwenRamps = rampEnd.transform.position.y; }
+            if (coinHandler.coinCurrentVal <= 0) { distanceRamps_Z = rampEnd.transform.position.z; ; }
+            if (gapBetweenRamps == 0 && heightBetwenRamps == 0) { gapBetweenRamps = rampEnd.transform.position.z; heightBetwenRamps = rampEnd.transform.position.y; distanceRamps_Z = gapBetweenRamps; }
             else
             {
                 gapBetweenRamps += 1.67f; heightBetwenRamps += 0.05f;
@@ -38,9 +37,6 @@ public class levelEnd_Controller : MonoBehaviour
                 }
             }
         }
-
-        if (coinHandler.levelEndCoinVal == coinHandler.coinCurrentVal) { coinsDroped = true; }
-        else { coinsDroped = false; }
     }
 
     void addRamp()

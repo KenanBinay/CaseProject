@@ -40,7 +40,6 @@ public class LevelController : MonoBehaviour
 
                 int[] baseNumbs = { 0, 1, 2, 3, 4, 5 };
                 baseNumb = baseNumbs[Random.Range(0, baseNumbs.Length)];
-                Debug.Log("SelectedLevelBases: " + baseNumb);
 
                 GameObject baseObject = levelPrefabs[baseNumb];
                 Instantiate(baseObject, spawnpoint, baseObject.transform.rotation);
@@ -53,7 +52,6 @@ public class LevelController : MonoBehaviour
 
             int[] baseNumbs = { 0, 1, 2, 3, 4, 5 };
             baseNumb = baseNumbs[Random.Range(0, baseNumbs.Length)];
-            Debug.Log("SelectedLevelBases: " + baseNumb);
 
             GameObject baseObject = levelPrefabs[baseNumb];
             Instantiate(baseObject, spawnpoint, baseObject.transform.rotation);
@@ -64,7 +62,6 @@ public class LevelController : MonoBehaviour
 
             int[] baseNumbs = { 0, 1, 2, 3, 4, 5 };
             baseNumb = baseNumbs[Random.Range(0, baseNumbs.Length)];
-            Debug.Log("SelectedLevelBases: " + baseNumb);
 
             GameObject baseObject = levelPrefabs[baseNumb];
             Instantiate(baseObject, spawnpoint, baseObject.transform.rotation);
@@ -75,7 +72,6 @@ public class LevelController : MonoBehaviour
 
             int[] baseNumbs = { 0, 1, 2, 3, 4, 5 };
             baseNumb = baseNumbs[Random.Range(0, baseNumbs.Length)];
-            Debug.Log("SelectedLevelBases: " + baseNumb);
 
             GameObject baseObject = levelPrefabs[baseNumb];
             Instantiate(baseObject, spawnpoint, baseObject.transform.rotation);

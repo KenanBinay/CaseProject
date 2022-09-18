@@ -11,11 +11,12 @@ public class coinMovement : MonoBehaviour
     public float turnSpeed, speedForward, coinRotateAngle;
     public GameObject coinStack, startFinger;
     Rigidbody coinRb;
+    bool flip;
     void Start()
     {
         coinRb = GetComponent<Rigidbody>();
         startFinger.SetActive(true);
-        isDraging = startClick = false;
+        isDraging = startClick = flip = false;
     }
 
     private void Update()
@@ -88,13 +89,23 @@ public class coinMovement : MonoBehaviour
         if (coinHandler.levelEnd && coinHandler.levelEndCoinVal != coinHandler.coinCurrentVal)
         {
             Vector3 desiredPosition = new Vector3(0, transform.position.y, transform.position.z);
-            Vector3 SmoothedPosition = Vector3.Lerp(transform.position, desiredPosition, 0.1f);
+            Vector3 SmoothedPosition = Vector3.Lerp(transform.position, desiredPosition, 2f);
+            transform.DOLocalRotate(new Vector3(0, -90, 0), 0.5f);
             if (transform.position != SmoothedPosition) { transform.position = SmoothedPosition; }
-            if (gameObject.transform.position.z != levelEnd_Controller.distanceRamps_Z - 16f) { transform.localPosition += new Vector3(0, 0, 1) * speedForward * Time.deltaTime; }
+            transform.localPosition += new Vector3(0, 0, 1) * speedForward * Time.deltaTime; 
         }
-        if (coinHandler.levelEndCoinVal == coinHandler.coinCurrentVal)
+        if (coinHandler.levelEnd && coinHandler.levelEndCoinVal == coinHandler.coinCurrentVal)
         {
-           
+            if (transform.position.z < levelEnd_Controller.distanceRamps_Z ) { transform.localPosition += new Vector3(0, 0, 1) * speedForward * Time.deltaTime; }
+            else
+            {
+                if (flip == false)
+                {
+                    coinRb.constraints = RigidbodyConstraints.None;
+                    coinRb.AddForce(new Vector3(-1, 1, 0));
+                    flip = true;
+                }
+            }
         }
     }
 

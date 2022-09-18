@@ -9,7 +9,6 @@ public class CamController : MonoBehaviour
     public Vector3 offset, lvlEndOffset, lookLvlEnd, offset_speedUp;
 
     public static bool camMovedFinish;
-    bool delayWaited;
 
     private void Start()
     {
@@ -26,12 +25,5 @@ public class CamController : MonoBehaviour
             transform.position = SmoothedPosition;
         }    
 
-    }
-
-    public IEnumerator DelayForLvlEndCam()
-    {
-        yield return new WaitForSeconds(0.5f);
-
-        delayWaited = true;
     }
 }

@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class levelEndStair : MonoBehaviour
 {
+    public GameObject coinM, coinEnd;
     int myLine;
+    bool destroyed;
     void Start()
     {
         myLine = levelEnd_Controller.stairLine;
+        destroyed = false;
     }
 
    
@@ -22,9 +25,9 @@ public class levelEndStair : MonoBehaviour
         {
             
         }
-        if (collision.gameObject.CompareTag("coinstack"))
+        if (collision.gameObject.tag == "coinstack")
         {
-            
+
         }
     }
 

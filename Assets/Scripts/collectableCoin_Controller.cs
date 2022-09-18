@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class collectableCoin_Controller : MonoBehaviour
 {
-    GameObject collectable;
+
     void Start()
     {
-        collectable.GetComponent<GameObject>();
-    }
 
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "coinmain")
         {
-            Destroy(collectable);
-        }    
+         //   Destroy(collision.gameObject);
+        }
     }
 }

@@ -5,7 +5,6 @@ using UnityEngine;
 public class stackController : MonoBehaviour
 {
     public GameObject coinStack;
-    public Transform parentCoin;
     public static bool coinCollected_Stack;
     Vector3 stackingPos;
     public static float gapBetweenCoins;
@@ -22,14 +21,12 @@ public class stackController : MonoBehaviour
         {
             countLine++;
 
-            if (gapBetweenCoins == 0) { gapBetweenCoins = transform.localPosition.z - 0.3f; }
+        /*    if (gapBetweenCoins == 0) { gapBetweenCoins = transform.localPosition.z - 0.3f; }
             else { gapBetweenCoins -= 0.3f; }
+       */
+            Debug.Log(countLine + " Line Coin");
 
-  
-
-            Debug.Log(countLine + " Line Coin PosZ: " + gapBetweenCoins);
-
-            stackingPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gapBetweenCoins);
+            stackingPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z - 0.3f);
         
             stackNewCoin(coinStack);
         }
