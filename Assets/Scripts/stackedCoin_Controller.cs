@@ -7,12 +7,12 @@ public class stackedCoin_Controller : MonoBehaviour
 {
     GameObject parentCoin;
     Rigidbody rbStack;
-    public static bool coinCollected, gameOverStacked, forceControl;
+    public static bool coinCollected, gameOverStacked;
     public float jumpForce;
     float distanceBetween, lostCoinPosZ, distanceCut, targetPosZ;
     public static float endDistanceCut;
     int myline;
-    bool EndCoinDrop;
+    bool EndCoinDrop, forceControl;
     void Start()
     {
         forceControl = EndCoinDrop = false;
@@ -29,7 +29,7 @@ public class stackedCoin_Controller : MonoBehaviour
 
     void Update()
     {
-        if (coinHandler.gameOver) { if (forceControl) { addForce(); } }
+        if (coinHandler.gameOver) { if (forceControl == false) { addForce(); } }
         else
         {
             distanceBetween = parentCoin.transform.position.z - transform.position.z;
@@ -43,7 +43,7 @@ public class stackedCoin_Controller : MonoBehaviour
 
             if (coinMovement.leftTurn) { transform.DOLocalRotate(new Vector3(0, -130, 0), distanceBetween); }
             if (coinMovement.rightTurn) { transform.DOLocalRotate(new Vector3(0, -50, 0), distanceBetween); }
-           
+
         }
 
         if (coinCollected) { StartCoroutine(waitDelay()); }
@@ -74,27 +74,27 @@ public class stackedCoin_Controller : MonoBehaviour
             if (EndCoinDrop == false)
             {
                 EndCoinDrop = true;
-                Destroy(other.gameObject);
                 rbStack.constraints = RigidbodyConstraints.None;
-                rbStack.AddForce(new Vector3(-2.5f, 1.5f, -3f));
+                transform.position = new Vector3(transform.position.x, transform.position.y, other.transform.position.z - 1);
+                Destroy(other.gameObject);
+                rbStack.AddForce(Random.Range(-4, 4), 5, 0);
             }
-
-     //       Destroy(gameObject); 
         }
     }
 
     void addForce()
     {
         rbStack.constraints = RigidbodyConstraints.None;
-        rbStack.AddForce(new Vector3(2, 1, 2));
-        forceControl = false;
+        rbStack.AddForce(Random.Range(-4, 4), 5, 0);
+
+        forceControl = true;
     }
 
     private IEnumerator waitDelay()
     {
         yield return new WaitForSeconds(distanceBetween);
-        rbStack.AddForce(new Vector3(0, 1, 0) * jumpForce);
-        if (rbStack.transform.position.y <= 1) { rbStack.AddForce(new Vector3(0, 1, 0) * jumpForce); }
+        rbStack.AddForce(new Vector3(0, 0.25f, 0));
+   //     if (rbStack.transform.position.y < 1.5f) { rbStack.AddForce(new Vector3(0, 1, 0) * jumpForce); }
         coinCollected = false;
     }
 }

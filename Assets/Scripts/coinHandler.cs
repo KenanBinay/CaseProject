@@ -54,7 +54,7 @@ public class coinHandler : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("obstacle"))
         {
-            gameOver = stackedCoin_Controller.forceControl = true;
+            gameOver = true;
             coinRb.constraints = RigidbodyConstraints.None;
             coinRb.AddForce(new Vector3(2, 10, 2));
             Debug.Log("GameOver");

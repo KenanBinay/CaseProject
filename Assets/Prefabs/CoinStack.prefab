@@ -125,5 +125,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4276872f24165dc48af756c9dfc5867b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinEnd: {fileID: 3709487080370370759, guid: e6376d6cee0d3294aa90de9632c0b309, type: 3}
-  jumpForce: 0.2
+  jumpForce: 0.15
