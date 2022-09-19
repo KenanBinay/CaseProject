@@ -905,6 +905,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7684024630207613772}
+  - component: {fileID: 4685481064818749129}
   m_Layer: 0
   m_Name: AxeStack3x_R
   m_TagString: obstacle
@@ -928,6 +929,25 @@ Transform:
   m_Father: {fileID: 7684024631525341222}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 173.169, z: 0}
+--- !u!95 &4685481064818749129
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7684024630207613775}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3e19bf8b8f92c7b43bf823974a5b3b8b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7684024630437438471
 GameObject:
   m_ObjectHideFlags: 0
@@ -1238,6 +1258,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7684024631070047887}
+  - component: {fileID: 7045627142966522193}
   m_Layer: 0
   m_Name: AxeStack3x_L
   m_TagString: obstacle
@@ -1261,6 +1282,25 @@ Transform:
   m_Father: {fileID: 7684024631525341222}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &7045627142966522193
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7684024631070047886}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3e19bf8b8f92c7b43bf823974a5b3b8b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7684024631222150634
 GameObject:
   m_ObjectHideFlags: 0
